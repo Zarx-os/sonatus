@@ -1,16 +1,47 @@
 import React, { useRef, useEffect, useState } from "react";
 import Boton from "../componentes/Boton";
+import AudioBox from "../componentes/AudioBox";
+
 const Waveform = () => {
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
   const mediaStreamRef = useRef(null);
   let animationId = null;
-  const [isRecording, setIsRecording] = useState(false);
   const analyserRef = useRef(null);
+  const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+  const [grabaciones, setGrabaciones] = useState([]);
+  const mediaRecorderRef = useRef(null);
+
+  const startTimer = () => {
+    const id = setInterval(() => {
+      setTiempoTranscurrido((prev) => prev + 1);
+    }, 1000); // Actualizar el tiempo transcurrido cada segundo
+    setIntervalId(id);
+
+
+
+    setTimeout(() => {
+      stopRecording();
+
+      if(tiempoTranscurrido===5){
+        return console.log('Termino')
+      }
+    }, 5000);
+
+
+
+    
+  };
+
+  const resetTimer = () => {
+    clearInterval(intervalId);
+    setIntervalId(null);
+    setTiempoTranscurrido(0);
+  };
 
   const startRecording = async () => {
     try {
-      setIsRecording(true);
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaStreamRef.current = stream;
       const audioContext = new AudioContext();
@@ -27,6 +58,36 @@ const Waveform = () => {
 
       analyserRef.current = analyser;
       source.connect(analyser);
+      const mediaRecorder = new MediaRecorder(mediaStreamRef.current);
+      const chunks = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        chunks.push(event.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+        //const audioURL = URL.createObjectURL(blob);
+        //console.log(grabaciones)
+        if (grabaciones.length === 0) {
+          setGrabaciones([blob]);
+          //console.log(`Si entro al primer if ${blob}`)
+        } else {
+          setGrabaciones((prevGrabaciones) => [...prevGrabaciones, blob]);
+        }
+        //let audio = new Audio(audioURL);
+        //audio.play();
+        //console.log("Audio URL:", audioURL);
+        
+      };
+
+      mediaRecorderRef.current = mediaRecorder;
+      mediaRecorder.start();
+
+      startTimer();
+      
+      
+
       // No conectar el AnalyserNode al destino de audio
       //analyser.connect(audioContext.destination);
 
@@ -49,7 +110,12 @@ const Waveform = () => {
           const y = (v * canvasRef.current.height) / 2;
           const now = Date.now();
           const hue = (now / 20) % 360; // Cambiar el número 10 para ajustar la velocidad de cambio de color
-          const gradient = ctx.createLinearGradient(0, 0, canvasRef.current.width, canvasRef.current.height);
+          const gradient = ctx.createLinearGradient(
+            0,
+            0,
+            canvasRef.current.width,
+            canvasRef.current.height
+          );
           gradient.addColorStop(0, `hsl(${hue}, 100%, 50%)`);
           gradient.addColorStop(1, `hsl(${hue + 180}, 100%, 50%)`); // Agregar un segundo punto de color para crear el efecto de gradiente
           ctx.strokeStyle = gradient;
@@ -62,23 +128,32 @@ const Waveform = () => {
         }
 
         ctx.lineWidth = 8;
-       
+
         //ctx.strokeStyle = "#fff";
         ctx.stroke();
       };
 
       drawAudioWaveform();
+
+
+     
+
+
     } catch (error) {
       console.error(error);
     }
   };
 
   const stopRecording = () => {
-    setIsRecording(false);
+    mediaRecorderRef.current?.stop();
     mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
     audioContextRef.current?.close();
     analyserRef.current?.disconnect();
+    resetTimer();
+
     cancelAnimationFrame(animationId);
+
+    //console.log(grabaciones);
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -136,17 +211,22 @@ const Waveform = () => {
     draw();
   }, []);
 
+  const handleBorrarClick = (index) => {
+    const newGrabaciones = [...grabaciones];
+    newGrabaciones.splice(index, 1);
+    setGrabaciones(newGrabaciones);
+  };
+
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0,0,0,0)",
-        }}
-      />
-      <Boton clase={"botonP"} startRecording={startRecording} stopRecording={stopRecording} evento={isRecording}></Boton>
+      <p>00:0{tiempoTranscurrido}</p>
+      <canvas ref={canvasRef} className="waveform" />
+      <Boton
+        clase={"btnMic"}
+        startRecording={startRecording}
+        stopRecording={stopRecording}
+      ></Boton>
+      <AudioBox grabaciones={grabaciones} onBorrar={handleBorrarClick}></AudioBox>
     </>
   );
 };

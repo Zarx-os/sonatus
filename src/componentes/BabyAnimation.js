@@ -1,38 +1,11 @@
 import React, { useRef } from "react";
-import gsap from "gsap";
 
 function BabyAnimation() {
   const bebeRef = useRef(null);
-  const animacionFeliz = () => {
-    gsap.to(bebeRef.current, {
-      duration: 1,
-      y: -50, // mueve el bebé hacia arriba
-      ease: "back.out(1.7)", // efecto de rebote al final
-    });
-  };
-
-  // Función que inicia la animación de llanto
-  const animacionLlorar = () => {
-    gsap.to(bebeRef.current, {
-      duration: 1,
-      y: 50, // mueve el bebé hacia abajo
-      opacity: 0.5, // cambia la opacidad del bebé
-      ease: "back.out(1.7)", // efecto de rebote al final
-    });
-  };
+  
 
   return (
-    <div id="container">
-      <svg
-        
-        width="100"
-        height="100"
-        viewBox="0 0 100 100"
-        fill="#f6d6e8"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="50" cy="50" r="50" />
-      </svg>
+    <div className="container-baby">
       <svg
       ref={bebeRef}
         width="343"
@@ -40,6 +13,7 @@ function BabyAnimation() {
         viewBox="0 0 343 546"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="svg_baby"
       >
         <g id="baby_body">
           <path
@@ -48,8 +22,6 @@ function BabyAnimation() {
           />
         </g>
       </svg>
-      <button onClick={animacionFeliz}>Feliz</button>
-      <button onClick={animacionLlorar}>Llorar</button>
     </div>
   );
 }

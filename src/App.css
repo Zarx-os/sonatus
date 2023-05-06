@@ -9,99 +9,104 @@ body {
   background: linear-gradient(#ffbfb0,#ff9688);
 }
 .baby-background{
+  position: fixed;
   background-image: url(./images/icons_baby.png);
   width: 100%;
   height: 100vh;
   z-index: -1;
-  opacity: .08;
+  opacity: .05;
   background-position-x: 50%;
   background-position-y: 20rem;
 }
-.borderC{
-
-  width: 96%;
-  border-radius: 20px;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 2%;
-  position: absolute;
-  height: 98vh;
-  color: 0;
-}
-.audio-title{
-  position: absolute;
-  background-color:#ff9c9c;
-  width: 80%;
-  height: 22%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 70px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
-  text-align: center;
-  z-index: 1;
-}
-.audio{
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.container-main{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 20rem;
-  margin-left: -50%;
-  /* -1/2 width */
-  margin-top: -10rem;
-  /* -1/2 height */
+  height: 94vh;
+}
+.container-baby{
+  width: 100vw;
+  height: 30%;
+  padding-top: 5%;
   text-align: center;
 }
-.wave{
-  width: 100%;
-  height: 100px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-#myCanvas{
-  width: 100%;
-  height: 100px;
-  position: absolute;
-}
-
-.botonP{
-  min-width: 150px;
+.svg_baby{
   width: auto;
-  height: 150px;
-  border-radius: 100%;
+  height: 100%;
+}
+.container-wave{
+  width: 100%;
+  height: 20vh;
+}
+.waveform{
+  width: 100vw;
+  height: 20vh;
+}
+
+.btnMic{
+  border-radius: 50%;
   border:0;
-  margin-top: 80px;
-  box-shadow:
-    0 0 0 10px rgb(255, 162, 255),
-    0 0 0 15px rgb(255, 179, 251);
+  width: 25vw;
+  height: 25vw;
+  box-shadow:    0 0 0 2vw rgb(220, 20, 60),    0 0 0 3vw rgba(220, 20, 60, 0.541);
 }
-.botonP{
-  transition: ease-in 0.1s;
-  background-image: url(./images/baby.png);
-  background-size: 100px;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-transition: ease-in 0.1s;
-  -moz-transition: ease-in 0.1s;
-  -ms-transition: ease-in 0.1s;
-  -o-transition: ease-in 0.1s;
+
+.btnMic{
+  transition: ease-in 0.05s;
+  -webkit-transition: ease-in 0.05s;
+  -moz-transition: ease-in 0.05s;
+  -ms-transition: ease-in 0.05s;
+  -o-transition: ease-in 0.05s;
 }
-.botonP:active{
-  z-index: 10;
+.btnMic:active{
+  z-index: 12;
   translate: 0px 5px;
 }
 
-
-.h1G{
-  width: 100%;
-  font-family: 'Fira Sans';
-  font-size: 200%;
-  margin-top: 20px;
-  background-color: white;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.mic{
+  color: crimson;
+  width: auto;
+  height: 50%;
 }
 
+.container-audios{
+  background-color: white;
+  width: 90%;
+  height: 15vh;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 20px;
+  margin-bottom: 10%;
+  padding-left: 5%;
+  padding-top: 5%;
+  padding-right: 5%;
+  overflow: auto;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.container-controls{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
 
+.button_audios{
+  background-color: #ffbfb0;
+  width: 100%;
+  height: 50%;
+  border: 0;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
 
+.play-audios{
+  width: 70%;
+}

@@ -21,30 +21,33 @@ function useDeviceDetection() {
   return deviceInfo;
 }
 
+/*const activateBaby= ()=>{
+
+}*/
+
 function App() {
   const deviceInfo = useDeviceDetection();
   
   const mobile = deviceInfo.device.type;
   //const os = deviceInfo.os.family;
   //const browser = deviceInfo.browser.family;
+  //console.log(mobile)
+  /*
+  function handleLogout() {
+    localStorage.removeItem('token'); // eliminar el token del almacenamiento local
+    history.push('/login'); // redirigir al usuario al componente Login
+  }*/
 
   return (
     <>
-      {(mobile === ("Mobile" || "Tablet") ? true : false) ? (
+      {((mobile === "Mobile" || mobile === "Tablet") ? true : false) ? (
         <>
           <Cabecera></Cabecera>
-          <section className="audio-title">
-            <h1 className="h1G">Presiona para saber que siente tu bebe</h1>
-          </section>
-          <div className="borderC"></div>
           <div className="baby-background"></div>
-          <section className="audio">
-            <div className="wave">
-              <Waveform></Waveform>
-            </div>
-            
+          <section className="container-main">
+              <BabyAnimation></BabyAnimation>
+              <Waveform ></Waveform>
           </section>
-          <section className="sound-clips"></section>
         </>
       ) : (
         <>

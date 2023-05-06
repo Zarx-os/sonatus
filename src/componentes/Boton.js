@@ -1,4 +1,8 @@
 import React, {useState} from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons'
+
+
 function Boton({clase,startRecording,stopRecording}){
 
     const [isRecording, setIsRecording] = useState(false);
@@ -12,7 +16,9 @@ function Boton({clase,startRecording,stopRecording}){
     }
     return(
         <>
-        <button className={clase} onClick={handleClick}></button>
+        <button className={clase} onClick={handleClick}>
+        <FontAwesomeIcon className="mic" icon={faMicrophone} />
+        </button>
         </>
     );
 }
