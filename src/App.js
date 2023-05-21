@@ -44,7 +44,7 @@ function App() {
         <>
           <Cabecera></Cabecera>
           <div className="baby-background"></div>
-          <section className="container-main">
+          <section className="container-main-app">
               <BabyAnimation></BabyAnimation>
               <Waveform ></Waveform>
           </section>

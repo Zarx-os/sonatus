@@ -27,13 +27,13 @@ function Cabecera() {
   return (
     <>
       <header className="header">
-        <section className="item">
+        <section className="item-cabecera">
           <FontAwesomeIcon className="icons" icon={faBars} onClick={handleMenuClick} ref={buttonRef} />
         </section>
         <section>
           <h1 className="text-sonatus">SONATUS</h1>
         </section>
-        <section className="item">
+        <section className="item-cabecera">
           <FontAwesomeIcon className="icons" icon={faBrush} />
         </section>
       </header>

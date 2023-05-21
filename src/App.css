@@ -18,7 +18,7 @@ body {
   background-position-x: 50%;
   background-position-y: 20rem;
 }
-.container-main{
+.container-main-app{
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -41,9 +41,19 @@ body {
   width: 100%;
   height: 20vh;
 }
+.border_waveform{
+  width: 95vw;
+  height: 15vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
 .waveform{
-  width: 100vw;
-  height: 20vh;
+  width: 100%;
+  height: 100%;
 }
 
 .btnMic{

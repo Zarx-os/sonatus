@@ -7,26 +7,27 @@
 
   body {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
   
   .blur-background{
     position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url(./images/fondo1-login.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-image: url(./images/icons_baby.png);
+    background-size: 50% 100%;
+    background-repeat: round;
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     z-index: -1;
+    opacity: 0.2;
     filter: blur(4px);
     -webkit-filter: blur(4px);
 }
-
+.container-main-register{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .container-reg{
     max-width: 300px;
     width: 25vw;

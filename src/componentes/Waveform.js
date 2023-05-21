@@ -19,19 +19,13 @@ const Waveform = () => {
     }, 1000); // Actualizar el tiempo transcurrido cada segundo
     setIntervalId(id);
 
-
-
     setTimeout(() => {
       stopRecording();
 
-      if(tiempoTranscurrido===5){
-        return console.log('Termino')
+      if (tiempoTranscurrido === 5) {
+        return console.log("Termino");
       }
     }, 5000);
-
-
-
-    
   };
 
   const resetTimer = () => {
@@ -78,15 +72,12 @@ const Waveform = () => {
         //let audio = new Audio(audioURL);
         //audio.play();
         //console.log("Audio URL:", audioURL);
-        
       };
 
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
 
       startTimer();
-      
-      
 
       // No conectar el AnalyserNode al destino de audio
       //analyser.connect(audioContext.destination);
@@ -134,11 +125,6 @@ const Waveform = () => {
       };
 
       drawAudioWaveform();
-
-
-     
-
-
     } catch (error) {
       console.error(error);
     }
@@ -220,13 +206,18 @@ const Waveform = () => {
   return (
     <>
       <p>00:0{tiempoTranscurrido}</p>
-      <canvas ref={canvasRef} className="waveform" />
+      <div className="border_waveform">
+        <canvas ref={canvasRef} className="waveform" />
+      </div>
       <Boton
         clase={"btnMic"}
         startRecording={startRecording}
         stopRecording={stopRecording}
       ></Boton>
-      <AudioBox grabaciones={grabaciones} onBorrar={handleBorrarClick}></AudioBox>
+      <AudioBox
+        grabaciones={grabaciones}
+        onBorrar={handleBorrarClick}
+      ></AudioBox>
     </>
   );
 };
