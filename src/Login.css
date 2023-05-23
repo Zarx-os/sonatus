@@ -8,17 +8,24 @@
 body {
   min-height: 100vh;
 }
+.login-background{
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  background:linear-gradient(#ffbfb0,#ff9688);
+  z-index: -2;
+}
 .container-main-filter{
   position: absolute;
   width: 100vw;
   height: 90vh;
-  filter: blur(4px);
+  filter: blur(3px);
   background-image: url(./images/icons_baby.png);
   opacity: 0.2;
   background-size: 50% 100%;
   background-repeat: round;
   z-index: -1;
-  -webkit-filter: blur(4px);
+  -webkit-filter: blur(3px);
 }
 .header-login {
   width: 100vw;
@@ -46,8 +53,7 @@ body {
 }
 .container {
   display: flex;
-  width: 60vw;
-  height: 65vh;
+  width: 80%;
   background-color: rgba(255, 255, 255, 1);
   justify-content: space-evenly;
   align-items: center;
@@ -57,7 +63,21 @@ body {
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
+ 
 }
+  @media (min-width: 578px) {
+    .container {
+      max-width: 550px; } }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 650px; } }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 750px; } }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 850px; } }
+
 .item {
   width: 50%;
   height: 100%;
@@ -73,16 +93,16 @@ body {
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  padding: 0 50px;
+  padding: 0 30px;
+  overflow-y: auto;
 }
 
 .subitem-sign {
   width: 100%;
 }
-.container-input input {
-  background: 0;
+.container-input > input {
   width: 90%;
-  margin: 20px 20px;
+  margin: 20px 10px;
   height: 3.5em;
   border: 0;
   border-bottom: 2px solid black;
@@ -98,10 +118,10 @@ body {
   align-items: center;
 }
 
-.container-input label {
+.container-input > label {
   position: relative;
   top: -3.5em;
-  left: 1.8em;
+  left: 1.1em;
   font-size: 14px;
   color: black;
   pointer-events: none;
@@ -125,7 +145,7 @@ body {
 
 .container-input > input:focus + label,
 .container-input > input:valid + label {
-  top: -6.8em;
+  top: -7.2em;
   font-size: 11px;
   color: black;
 }
@@ -147,26 +167,21 @@ body {
 }
 
 .subitem-sign > button:hover {
-  background-image: none;
-  background-color: aliceblue;
+  background-image: linear-gradient(#fff 0%, #fff 100% );
   color: black;
   box-shadow: 0 0 10px 1px gray;
-  transition: all 0.4s ease-in;
-  -webkit-transition: all 0.4s ease-in;
-  -moz-transition: all 0.4s ease-in;
-  -ms-transition: all 0.4s ease-in;
-  -o-transition: all 0.4s ease-in;
+  transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -ms-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
 }
 
 .subitem-sign > span[id^="sign"] {
   font-family: "Roboto", sans-serif;
-  font-size: 40px;
+  font-size: 35px;
 }
 
-.rem {
-  display: flex;
-  justify-content: space-around;
-}
 
 .container-welcome {
   background-image: linear-gradient(135deg, #f75959 0%, #f35587 100%);
@@ -175,6 +190,7 @@ body {
   -moz-border-radius: 0 25px 25px 0;
   -ms-border-radius: 0 25px 25px 0;
   -o-border-radius: 0 25px 25px 0;
+  height: 28rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -184,6 +200,7 @@ body {
 .container-welcome > span[id^="welcome"] {
   font-family: "Yanone Kaffeesatz", sans-serif;
   font-size: 4vw;
+  color: white;
 }
 
 .button-link > button {
@@ -210,17 +227,134 @@ body {
   -o-transition: all 0.4s ease-in-out;
 }
 
-@media only screen and (max-width: 600px) {
+
+
+.container-text{
+  display: flex;
+  width: 100%;
+}
+.tx-left{
+  width: 50%;
+}
+.tx-right> a{
+  text-decoration: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: gray;
+}
+.tx-right> a:hover{
+  color: gray;
+}
+
+
+.tx-right{
+  width: 50%;
+  text-align: right;
+}
+
+
+.check_rem {
+  top: -0.5em;
+  left: 0.5em;
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  cursor: pointer ;
+  font-size: 15px;
+  -webkit-user-select: none ;
+  -moz-user-select: none ;
+  -ms-user-select: none ;
+  user-select: none ;
+}
+.check_rem input{
+  width: 0 ;
+  height: 0 ;
+  cursor: pointer ;
+  opacity: 0;
+  position: absolute;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.check_rem:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check_rem input:checked ~ .checkmark {
+  background-color: #f75959;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check_rem input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check_rem .checkmark:after {
+  left: 4.5px;
+  top: 2.5px;
+  width: 2.5px;
+  height: 5px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.container-password{
+  width: 85%;
+  z-index: -2;
+  display: flex;
+  justify-content: right;
+  margin-left: auto;
+  margin-right: auto;
+}
+.show-password{
+  width: 25px;
+  position: relative;
+  top: -4.4em;
+  cursor: pointer;
+}
+.error{
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 578px) {
   .container {
-    width: 80vw;
-    height: 80vh;
     flex-direction: column;
+  }
+  .container-main-filter {
+    background-size: 100% 50%;
+    background-repeat: round;
   }
   .container-sign {
     padding: 20px 0;
   }
   .container-welcome {
     width: 100%;
+    height: 20% ;
     border-radius: 0 0 20px 20px;
     -webkit-border-radius: 0 0 20px 20px;
     -moz-border-radius: 0 0 20px 20px;
@@ -230,19 +364,18 @@ body {
   .mobile-item {
     width: 80%;
   }
-  .container-input input {
-    margin: 20px 10px;
-  }
+  
+  
+
   .container-input label {
     left: 1.2em;
   }
   .check_rem > input + label {
-    font-size: 12px;
-  }
-  .check_rem > input {
-    width: 20%;
+    font-size: 10px;
+    margin-left: 0;
   }
   #forgot {
-    font-size: 12px;
+    font-size: 8px;
   }
 }
+

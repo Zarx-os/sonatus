@@ -6,17 +6,24 @@
 }
 body { 
   min-height: 100vh; 
-  background: linear-gradient(#ffbfb0,#ff9688);
+ 
 }
 .baby-background{
   position: fixed;
   background-image: url(./images/icons_baby.png);
   width: 100%;
-  height: 100vh;
-  z-index: -1;
+  height: 94vh;
+  z-index: -2;
   opacity: .05;
   background-position-x: 50%;
   background-position-y: 20rem;
+}
+.baby-background-gradient{
+  position: absolute;
+  background-image: linear-gradient(#ffbfb0,#ff9688);
+  width: 100%;
+  height: 94vh;
+  z-index: -3;
 }
 .container-main-app{
   display: flex;

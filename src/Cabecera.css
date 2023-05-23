@@ -47,8 +47,12 @@ h1{
     height: auto;
     background-color: aliceblue;
     z-index: 2;
-    transition:1s ease-in;
+    transition:all 1s ease-in;
     overflow-y: auto;
+    -webkit-transition:all 1s ease-in;
+    -moz-transition:all 1s ease-in;
+    -ms-transition:all 1s ease-in;
+    -o-transition:all 1s ease-in;
 }
 .items-bars{
     

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../Register.css";
 
 const Register = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const [showStep, setShowStep] = useState(true);
   const numSteps = 3;
@@ -12,64 +13,79 @@ const Register = () => {
 
   const [formValues, setFormValues] = useState({
     name: "",
+    apellido_P:"",
+    apellido_M:"",
     email: "",
-    user: "",
     pass: "",
     repass: "",
   });
 
   const handleSubmit = (event) => {
     //event.preventDefault();
-    console.log(formValues);
     if (validateForm()) {
       window.alert("Se puede enviar al servidor");
-      // sendData();  Aqui se envia al servidor en formato json para subirlo a la base de datos
+      sendData(); // Aqui se envia al servidor en formato json para subirlo a la base de datos
+    }else{
+      window.alert("Algun campo no se relleno de manera deacuada");
     }
   };
 
   const sendData = async () => {
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formValues),
-    });
-    if (response.ok) {
-      setStep(numSteps);
+    try {
+      const response = await axios.post('http://localhost:5000/register', formValues);
+  
+      if (response.status === 200) {
+        console.log(response.data);
+      }
+      /*if (response.status === 200) {
+        setStep(numSteps);
+      }*/
+    } catch (error) {
+      console.error(error);
     }
   };
 
   const validateForm = () => {
-    const requiredFields = ["name", "email", "user", "pass", "repass"];
+    const requiredFields = ["name", "email", "apellido_P","apellido_M", "pass", "repass"];
     let isValid = true;
+    console.log(formValues)
     for (const field of requiredFields) {
       if (formValues[field].trim() === "") {
         isValid = false;
+        Window.alert("Esta vacio uno de los campos, llene todos.");
       }
     }
     if (formValues["pass"] !== formValues["repass"]) {
       isValid = false;
+      Window.alert("La contrasena no coincide");
     }
     return isValid;
   };
 
   const nextStep = () => {
-    if (step === numSteps) {
-      setStep(1);
-      setProgress(maxProgress);
-      setShowStep(true);
-    } else if (step === numSteps - 1) {
+    if (step === numSteps-1) {
+      setStep(0);
+      setProgress(0);
+      setShowStep(false);
+      window.location.href = "/";
+    } else if (step === numSteps - 2) {
       handleSubmit();
+      stepNext();
+    } else {
+      stepNext();
     }
-    setShowStep(false);
-    setTimeout(() => {
-      setStep(step + 1);
-      setProgress(progress + maxProgress);
-      setShowStep(true);
-    }, 300);
+    console.log(step)
   };
 
+
+  const stepNext= () =>{
+    setShowStep(false);
+      setTimeout(() => {
+        setStep(step + 1);
+        setProgress((step+1) * maxProgress);
+        setShowStep(true);
+      }, 300);
+  }
   /*
     const prevStep = () => {
       setStep(step - 1);
@@ -81,9 +97,10 @@ const Register = () => {
     <>
       <div className="container-main-register">
         <div className="blur-background"></div>
+        <div className="blur-background-size"></div>
         <div className="container-reg">
           <section className="subitem-in">
-            {step === 1 && (
+            {step === 0 && (
               <section className={`subitem-in paso1 ${showStep ? "step" : ""}`}>
                 <section>
                   <h1> Welcome</h1>
@@ -94,14 +111,14 @@ const Register = () => {
                 </section>
               </section>
             )}
-            {step === 2 && (
+            {step === 1 && (
               <section
                 className={`subitem-in in-container ${
                   showStep ? "step" : ""
                 } paso2`}
               >
                 <h2>Sign In</h2>
-                <p>
+                <div className="container_reg_input">
                   <input
                     type="text"
                     id="nombre"
@@ -116,7 +133,6 @@ const Register = () => {
                   <label htmlFor="nombre" data-label="name">
                     Nombre:
                   </label>
-                </p>
                 <input
                   type="email"
                   id="email"
@@ -131,16 +147,27 @@ const Register = () => {
 
                 <input
                   type="text"
-                  id="usuario"
+                  id="apellido_P"
                   required
-                  placeholder="Type your user"
-                  value={formValues.user}
+                  placeholder="Coloca tu apellido paterno"
+                  value={formValues.apellido_P}
                   onChange={(e) =>
-                    setFormValues({ ...formValues, user: e.target.value })
+                    setFormValues({ ...formValues, apellido_P: e.target.value })
                   }
                 />
-                <label htmlFor="usuario">Usuario:</label>
+                <label htmlFor="apellido_P">Apellido Paterno:</label>
 
+                <input
+                  type="text"
+                  id="apellido_M"
+                  required
+                  placeholder="Coloca tu apellido materno"
+                  value={formValues.apellido_M}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, apellido_M: e.target.value })
+                  }
+                />
+                <label htmlFor="apellido_M">Apellido Materno:</label>
                 <input
                   type="password"
                   id="contraseña"
@@ -164,9 +191,10 @@ const Register = () => {
                   }
                 />
                 <label htmlFor="contraseña">Re-Contraseña:</label>
+                </div>
               </section>
             )}
-            {step === 3 && (
+            {step === 2 && (
               <section
                 className={`container-check paso3 ${showStep ? "step" : ""} `}
               >
@@ -201,7 +229,7 @@ const Register = () => {
             ></div>
           </div>
           <button className={`button-sig back-boton${step}`} onClick={nextStep}>
-            {frases[step - 1]}
+            {frases[step]}
           </button>
         </div>
       </div>

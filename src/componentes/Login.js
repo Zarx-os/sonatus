@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../Login.css";
 
@@ -9,11 +11,16 @@ const Login = ({ setIsLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", { username, password });
+      const response = await axios.post("http://localhost:5000/login", {
+        username,
+        password,
+      });
 
       // Assuming the response contains a token or success flag
       if (response.data.success) {
@@ -23,9 +30,13 @@ const Login = ({ setIsLoggedIn }) => {
       } else {
         setError("Invalid username or password");
       }
+      setUsername(""); // Limpiar el valor del username
+      setPassword(""); // Limpiar el valor del password
     } catch (error) {
       console.error(error);
       setError("An error occurred during login");
+      setUsername(""); // Limpiar el valor del username
+      setPassword(""); // Limpiar el valor del password
     }
   };
 
@@ -37,6 +48,10 @@ const Login = ({ setIsLoggedIn }) => {
     setPassword(event.target.value);
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   if (isLoggedIn) {
     return <Navigate to="/app" />;
   }
@@ -44,7 +59,7 @@ const Login = ({ setIsLoggedIn }) => {
   return (
     <>
       <div className="container-main-filter"></div>
-
+      <div className="login-background"></div>
       <div className="container-main">
         <div className="container">
           <section className="item container-sign mobile-item">
@@ -60,15 +75,36 @@ const Login = ({ setIsLoggedIn }) => {
                   required
                 ></input>
                 <label>Username</label>
+                
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={handlePasswordChange}
                   required
                 ></input>
                 <label>Password</label>
+                <div className="container-password">
+                <div
+                  className="show-password"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon> : <FontAwesomeIcon icon={faEye}> </FontAwesomeIcon>}
+                </div>
+                </div>
                 {error && <div className="error">{error}</div>}
                 <button type="submit">Sign In</button>
+                <div className="container-text">
+                  <div className="tx-left">
+                    <label className="check_rem">
+                      Remember me
+                      <input type="checkbox" />
+                      <span className="checkmark"></span>
+                    </label>
+                  </div>
+                  <div className="tx-right">
+                    <a href="/forgot">Forgot Password</a>
+                  </div>
+                </div>
               </section>
             </form>
           </section>

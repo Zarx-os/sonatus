@@ -1,4 +1,4 @@
-import React,{useState,useRef,useEffect} from "react";
+import React,{useState,useRef} from "react";
 import "../Cabecera.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBrush } from "@fortawesome/free-solid-svg-icons";
@@ -12,17 +12,7 @@ function Cabecera() {
   };
 
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuVisible && buttonRef.current && !buttonRef.current.contains(event.target)) {
-        setMenuVisible(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuVisible]);
+  
 
   return (
     <>
@@ -36,9 +26,9 @@ function Cabecera() {
         <section className="item-cabecera">
           <FontAwesomeIcon className="icons" icon={faBrush} />
         </section>
+        
       </header>
       {menuVisible && <Bars setMenuVisible={setMenuVisible}/>}
-      {console.log(menuVisible)}
     </>
   );
 }

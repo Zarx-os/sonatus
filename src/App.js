@@ -43,6 +43,8 @@ function App() {
       {((mobile === "Mobile" || mobile === "Tablet") ? true : false) ? (
         <>
           <Cabecera></Cabecera>
+
+          <div className="baby-background-gradient"></div>
           <div className="baby-background"></div>
           <section className="container-main-app">
               <BabyAnimation></BabyAnimation>
