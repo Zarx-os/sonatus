@@ -5,9 +5,11 @@ import "./index.css";
 import App from "./App";
 import Login from "./componentes/Login";
 import Register from "./componentes/Register";
+import { UserProvider } from "./componentes/UserContext";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import logo from "./images/logo_baby.png";
+
 
 function Index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,7 +27,7 @@ function Index() {
   }, []);
 
   return (
-    <>
+    <UserProvider>
       {isMobile ? (
         isLoggedIn && isMobile ? (
           <></>
@@ -63,27 +65,27 @@ function Index() {
             path="/"
             element={
               isLoggedIn ? (
-                <Navigate to="/app" />
+                <Navigate to="/app/*" />
               ) : (
                 <Login setIsLoggedIn={setIsLoggedIn} />
               )
             }
           />
           {isLoggedIn ? (
-            <Route path="/app" element={<App />} />
+            <Route path="/app/*" element={<App />} />
           ) : (
-            <Route path="/app" element={<Navigate to="/" />} />
+            <Route path="/app/*" element={<Navigate to="/" />} />
           )}
           <Route path="/register" element={<Register />} />
         </Routes>
       </HashRouter>
-    </>
+      </UserProvider>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Index />);
 
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
 
 reportWebVitals();

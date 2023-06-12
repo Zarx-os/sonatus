@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "./App.css";
 import Waveform from "./componentes/Waveform";
 import Cabecera from "./componentes/Cabecera";
 import detect from "detect.js";
 import BabyAnimation from "./componentes/BabyAnimation";
+import UserPC from "./componentes/UserPC";
+import InternetContextProvider from "./componentes/InternetContextProvider";
 
 function useDeviceDetection() {
   const [deviceInfo, setDeviceInfo] = useState(
@@ -21,9 +23,7 @@ function useDeviceDetection() {
   return deviceInfo;
 }
 
-/*const activateBaby= ()=>{
 
-}*/
 
 function App() {
   const deviceInfo = useDeviceDetection();
@@ -32,14 +32,10 @@ function App() {
   //const os = deviceInfo.os.family;
   //const browser = deviceInfo.browser.family;
   //console.log(mobile)
-  /*
-  function handleLogout() {
-    localStorage.removeItem('token'); // eliminar el token del almacenamiento local
-    history.push('/login'); // redirigir al usuario al componente Login
-  }*/
-
+  
+  
   return (
-    <>
+    <InternetContextProvider>
       {((mobile === "Mobile" || mobile === "Tablet") ? true : false) ? (
         <>
           <Cabecera></Cabecera>
@@ -53,11 +49,10 @@ function App() {
         </>
       ) : (
         <>
-        <p>Estás en una computadora con el sistema operativo .</p>
-        <BabyAnimation></BabyAnimation>
+        <UserPC></UserPC>
         </>
       )}
-    </>
+    </InternetContextProvider>
   );
 }
 

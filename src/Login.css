@@ -236,16 +236,15 @@ body {
 .tx-left{
   width: 50%;
 }
-.tx-right> a{
+.tx-right > span{
   text-decoration: none;
   outline: none;
   font-size: 14px;
   font-weight: 700;
   color: gray;
+  cursor: pointer;
 }
-.tx-right> a:hover{
-  color: gray;
-}
+
 
 
 .tx-right{
@@ -379,3 +378,49 @@ body {
   }
 }
 
+.content-forgot-main{
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100vw;
+  height: 100vh;
+  position:absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+
+}
+.content-forgot{
+  text-align: center;
+  background-color: white;
+  padding: 30px 30px;
+  width: 30vw;
+  height: auto;
+}
+.content-forgot > input{
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.content-forgot > button{
+  font-size: 16px;
+  width: 40%;
+  margin-top: 10px;
+  color: white;
+  border: 0;
+  background-color: black;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.content-forgot >span{
+  cursor: pointer;
+  position: absolute;
+  font-weight: bold;
+  font-size: 24px;
+  top: 38%;
+  left: 62%;
+}

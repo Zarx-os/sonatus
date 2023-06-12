@@ -108,22 +108,229 @@ body {
 }
 .container-controls{
   display: flex;
-  justify-content: space-between;
   margin-bottom: 5%;
+  background-color: gainsboro;
+  flex-direction: row;
+  border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -ms-border-radius: 0 0 10px 10px;
+  -o-border-radius: 0 0 10px 10px;
+}
+.container-controls > div{
+  width: 30%;
+}
+.container-controls-main > h4{
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  width: 100%;
+  color: black;
+  background-color: gainsboro;
+  border: 1px solid black;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -ms-border-radius: 10px 10px 0 0;
+  -o-border-radius: 10px 10px 0 0;
 }
 
 .button_audios{
-  background-color: #ffbfb0;
+  background-color: white;
+  margin-top: 1px;
   width: 100%;
-  height: 50%;
-  border: 0;
+  border: 1px solid black;
+  
+}
+
+.play-audios{
+  width: 70%;
+  background:white;
+}
+
+.play-audios::-webkit-media-controls {
+  /* Para ocultar los controles predeterminados de Chrome */
+  display: none !important;
+}
+
+.play-audios::-webkit-media-controls-panel {
+  /* Para ocultar los controles predeterminados de Safari */
+  display: none !important;
+}
+
+.play-audios::-moz-audio-player-controls {
+  /* Para ocultar los controles predeterminados de Firefox */
+  display: none !important;
+}
+
+.main {
+  background-color: rgb(241, 207, 221);
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  background-color: rgb(103, 103, 103);
+  width: 90vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(231, 231, 231);
+  font-size: 20px;
+}
+
+.navegacion {
+  background-color: rgb(18, 2, 62);
+  width: 90%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navegacion a{
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: 600;
+  padding: 10px 5%;
+  
+}
+
+.navegacion a:hover{
+  color: black;
+  background-color: rgb(196, 247, 250);
+  transition: all 1 ease-in-out;
+  -webkit-transition: all 1 ease-in-out;
+  -moz-transition: all 1 ease-in-out;
+  -ms-transition: all 1 ease-in-out;
+  -o-transition: all 1 ease-in-out;
+}
+.navegacion-item-left{
+  width: 10%;
+  
+}
+.navegacion-item-left > svg{
+  color: aliceblue;
+  height: 25px;
+  padding: 0 30px;
+}
+
+.navegacion-item-right{
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
+.banner_sesion {
+  background-color: rgb(245, 196, 203);
+  background-image: url(./images/icons_baby.png);
+  filter: blur(3px);
+  background-position: center;
+  width: 90%;
+  height: calc(85vh - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0;
+  -webkit-filter: blur(3px);
+}
+
+.banner_sesion div{
+  background-color: rgb(245, 196, 203);
+}
+
+.banner_sesion h2 {
+  font-size: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  color: rgb(46, 46, 46);
+  padding: 20px 50px;
+}
+
+.banner_sesion h3 {
+  font-size: 22px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 700;
+  color: rgb(16, 16, 16);
+  padding: 20px 50px;
+}
+
+.content-user{
+  position: absolute;
+  width: 700px;
+  height: 450px;
+  background-color: ghostwhite;
+  box-shadow: 0 0 20px 5px black;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  padding: 50px 50px;
+}
+
+.audiobox-parent{
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.audiobox-request-main{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
+.audiobox-request{
+  padding: 50px 20px;
+  position: absolute;
+  width: 80%;
+  text-align: center;
+  height: 20%;
+  background-color: white;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
 }
+.audiobox-request > p:nth-child(3){
+  color: red;
+  font-family: 'Courier New', Courier, monospace;
 
-.play-audios{
-  width: 70%;
+}
+.audiobox-request-x{
+  position: absolute;
+  font-size: 20px;
+  font-weight: 1000;
+  top: 10%;
+  left: 88%;
+}
+
+.content-informacion{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+}
+.content-informacion > p{
+  margin-top: 10px;
+  font-weight: 1000;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.content-informacion > span{
+  font-weight: 200;
 }

@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../Login.css";
+import { UserContext } from "./UserContext";
 
 const Login = ({ setIsLoggedIn }) => {
   const [isLoggedIn, setIsLoggedInState] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [rememberSession, setRememberSession] = useState(false); // Variable de estado para recordar sesión
   const [showPassword, setShowPassword] = useState(false);
+  const { setUser } = useContext(UserContext);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://20.38.171.121:5000/login", {
         username,
         password,
       });
@@ -26,18 +30,48 @@ const Login = ({ setIsLoggedIn }) => {
       if (response.data.success) {
         setIsLoggedInState(true);
         setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", true);
+        setUser(response.data.user); // Establece la información del usuario en el estado del contexto
+
+        // Guardar la sesión solo si se seleccionó el checkbox de recordar sesión
+        if (rememberSession) {
+          localStorage.setItem("isLoggedIn", true);
+        } else {
+          localStorage.removeItem("isLoggedIn");
+        }
       } else {
-        setError("Invalid username or password");
+        setError("username o contraseña invalido");
       }
       setUsername(""); // Limpiar el valor del username
       setPassword(""); // Limpiar el valor del password
     } catch (error) {
       console.error(error);
-      setError("An error occurred during login");
+      setError("un error ocurrio en el login");
       setUsername(""); // Limpiar el valor del username
       setPassword(""); // Limpiar el valor del password
     }
+  };
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPassword(true);
+  };
+  const handleForgotPasswordCerrar = () => {
+    setShowForgotPassword(false);
+  };
+
+  const sendPasswordResetRequest = async () => {
+    try {
+      // Hacer la solicitud al servidor con el correo electrónico
+      const response = await axios.post("http://20.38.171.121:5000/password", {
+        email,
+      });
+
+      // Realizar acciones según la respuesta del servidor
+      console.log(response.data); // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito o error.
+    } catch (error) {
+      console.error(error);
+      // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario.
+    }
+    setShowForgotPassword(false);
   };
 
   const handleUsernameChange = (event) => {
@@ -51,6 +85,9 @@ const Login = ({ setIsLoggedIn }) => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const handleRememberSessionChange = () => {
+    setRememberSession(!rememberSession);
+  };
 
   if (isLoggedIn) {
     return <Navigate to="/app" />;
@@ -58,13 +95,27 @@ const Login = ({ setIsLoggedIn }) => {
 
   return (
     <>
+      {showForgotPassword && (
+        <div className="content-forgot-main">
+          <div className="content-forgot">
+            <p>Ingresa tu correo para recuperación de contraseña:</p>
+            <span onClick={handleForgotPasswordCerrar}>x</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button onClick={sendPasswordResetRequest}>Enviar</button>
+          </div>
+        </div>
+      )}
       <div className="container-main-filter"></div>
       <div className="login-background"></div>
       <div className="container-main">
         <div className="container">
           <section className="item container-sign mobile-item">
             <section className="subitem-sign">
-              <span id="sign">Sign in</span>
+              <span id="sign">Iniciar Sesion</span>
             </section>
             <form onSubmit={handleSubmit}>
               <section className="subitem-sign container-input">
@@ -74,45 +125,55 @@ const Login = ({ setIsLoggedIn }) => {
                   onChange={handleUsernameChange}
                   required
                 ></input>
-                <label>Username</label>
-                
+                <label>Nombre de usuario</label>
+
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={handlePasswordChange}
                   required
                 ></input>
-                <label>Password</label>
+                <label>Contraseña</label>
                 <div className="container-password">
-                <div
-                  className="show-password"
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPassword ? <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon> : <FontAwesomeIcon icon={faEye}> </FontAwesomeIcon>}
-                </div>
+                  <div
+                    className="show-password"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <FontAwesomeIcon icon={faEyeSlash}></FontAwesomeIcon>
+                    ) : (
+                      <FontAwesomeIcon icon={faEye}> </FontAwesomeIcon>
+                    )}
+                  </div>
                 </div>
                 {error && <div className="error">{error}</div>}
-                <button type="submit">Sign In</button>
+                <button type="submit">Iniciar</button>
                 <div className="container-text">
                   <div className="tx-left">
                     <label className="check_rem">
-                      Remember me
-                      <input type="checkbox" />
+                      Recuerdame
+                      <input
+                        type="checkbox"
+                        checked={rememberSession}
+                        onChange={handleRememberSessionChange}
+                      />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div className="tx-right">
-                    <a href="/forgot">Forgot Password</a>
+                    <span onClick={() => handleForgotPasswordClick()}>
+                      Contraseña Olvidada
+                    </span>
                   </div>
                 </div>
               </section>
             </form>
           </section>
           <section className="item container-welcome">
-            <span id="welcome">Welcome to login</span>
-            <span id="dont-account">Don't have an account?</span>
+            <span id="welcome">Bienvenido al login</span>
+            <span id="dont-account">¿No tienes una cuenta?</span>
             <Link to="/register" className="button-link">
-              <button id="sing-up">Sign Up</button>
+              <button id="sing-up">Unete</button>
             </Link>
           </section>
         </div>

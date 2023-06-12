@@ -1,22 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons'
 
 
-function Boton({clase,startRecording,stopRecording}){
+function Boton({clase,onClick, isRecording}){
 
-    const [isRecording, setIsRecording] = useState(false);
-    const handleClick= () =>{
-        if(isRecording === false){
-            startRecording();
-        }else{
-            stopRecording();
-        }
-        setIsRecording(!isRecording);
-    }
     return(
         <>
-        <button className={clase} onClick={handleClick}>
+        <button className={clase} onClick={onClick}>
         <FontAwesomeIcon className="mic" icon={faMicrophone} />
         </button>
         </>

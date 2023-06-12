@@ -9,7 +9,7 @@ const Register = () => {
   const numSteps = 3;
   const maxProgress = 100 / numSteps;
   const [progress, setProgress] = useState(maxProgress);
-  const frases = ["Sign In", "Siguente", "Terminar"];
+  const frases = ["Unete", "Siguente", "Terminar"];
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -23,7 +23,6 @@ const Register = () => {
   const handleSubmit = (event) => {
     //event.preventDefault();
     if (validateForm()) {
-      window.alert("Se puede enviar al servidor");
       sendData(); // Aqui se envia al servidor en formato json para subirlo a la base de datos
     }else{
       window.alert("Algun campo no se relleno de manera deacuada");
@@ -32,10 +31,10 @@ const Register = () => {
 
   const sendData = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/register', formValues);
+      const response = await axios.post('http://20.38.171.121:5000/register', formValues);
   
       if (response.status === 200) {
-        console.log(response.data);
+      //console.log(response.data);
       }
       /*if (response.status === 200) {
         setStep(numSteps);
@@ -106,7 +105,7 @@ const Register = () => {
                   <h1> Welcome</h1>
                 </section>
                 <section>
-                  <p>Bienvenido para la creacion de su cuenta nueva</p>
+                  <p>Bienvenido para la creacion de su cuenta nueva en SONATUS</p>
                   <p>Esto sera un registro paso a paso</p>
                 </section>
               </section>
@@ -117,7 +116,7 @@ const Register = () => {
                   showStep ? "step" : ""
                 } paso2`}
               >
-                <h2>Sign In</h2>
+                <h2>Inscribirse</h2>
                 <div className="container_reg_input">
                   <input
                     type="text"
@@ -172,7 +171,7 @@ const Register = () => {
                   type="password"
                   id="contraseña"
                   required
-                  placeholder="Type your password"
+                  placeholder="Coloca tu contraseña"
                   value={formValues.pass}
                   onChange={(e) =>
                     setFormValues({ ...formValues, pass: e.target.value })
@@ -184,7 +183,7 @@ const Register = () => {
                   type="password"
                   id="re-contraseña"
                   required
-                  placeholder="Type again password"
+                  placeholder="Coloca de nuevo tu contraseña"
                   value={formValues.repass}
                   onChange={(e) =>
                     setFormValues({ ...formValues, repass: e.target.value })
