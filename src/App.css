@@ -146,20 +146,6 @@ body {
   background:white;
 }
 
-.play-audios::-webkit-media-controls {
-  /* Para ocultar los controles predeterminados de Chrome */
-  display: none !important;
-}
-
-.play-audios::-webkit-media-controls-panel {
-  /* Para ocultar los controles predeterminados de Safari */
-  display: none !important;
-}
-
-.play-audios::-moz-audio-player-controls {
-  /* Para ocultar los controles predeterminados de Firefox */
-  display: none !important;
-}
 
 .main {
   background-color: rgb(241, 207, 221);
