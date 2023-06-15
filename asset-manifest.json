@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/sonatus/static/css/main.f5dbe5a9.css",
-    "main.js": "/sonatus/static/js/main.fcb5f4ef.js",
+    "main.js": "/sonatus/static/js/main.b794c3f2.js",
     "static/js/787.c3f13e42.chunk.js": "/sonatus/static/js/787.c3f13e42.chunk.js",
     "service-worker.js": "/sonatus/service-worker.js",
     "static/media/logo_baby.png": "/sonatus/static/media/logo_baby.96c9cfedf6cc25286c0b.png",
     "static/media/icons_baby.png": "/sonatus/static/media/icons_baby.6440da37d53665536cc5.png",
     "index.html": "/sonatus/index.html",
     "main.f5dbe5a9.css.map": "/sonatus/static/css/main.f5dbe5a9.css.map",
-    "main.fcb5f4ef.js.map": "/sonatus/static/js/main.fcb5f4ef.js.map",
+    "main.b794c3f2.js.map": "/sonatus/static/js/main.b794c3f2.js.map",
     "787.c3f13e42.chunk.js.map": "/sonatus/static/js/787.c3f13e42.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f5dbe5a9.css",
-    "static/js/main.fcb5f4ef.js"
+    "static/js/main.b794c3f2.js"
   ]
 }
