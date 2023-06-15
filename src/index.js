@@ -39,7 +39,7 @@ function Index() {
                 alt="logo-baby"
                 className="item_header item_img"
               ></img>
-              <a href="/" className="item_header item_sonatus">
+              <a href="/sonatus/" className="item_header item_sonatus">
                 SONATUS
               </a>
             </header>{" "}

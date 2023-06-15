@@ -10,8 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { UserContext } from "./UserContext";
+import Ajustes from "./Ajustes";
 
-function Bars({ device, item, setMenuVisible }) {
+function Bars({ device, item }) {
   const menuRef = useRef(null);
   const { user } = useContext(UserContext);
   const [showAjustes, setShowAjustes] = useState(false);
@@ -47,7 +48,7 @@ function Bars({ device, item, setMenuVisible }) {
   const handleCerrarSesionClick = () => {
     console.log("Se presionó cerrar sesión");
     localStorage.removeItem("isLoggedIn");
-    window.location.href = "/";
+    window.location.href = "/sonatus/";
   };
   const handleMenuMouseDown = (event) => {
     event.stopPropagation();
@@ -76,60 +77,7 @@ function Bars({ device, item, setMenuVisible }) {
           <p>Cerrar Sesión</p>
         </section>
       </div>
-      {showAjustes && (
-        <div className="content-bars-background">
-          <div className="ajustes">
-            <h2>Ajustes</h2>
-
-            <h3>Gestión de cuenta</h3>
-            <p>
-              En esta sección, puedes gestionar la información de tu cuenta y
-              personalizar tu perfil:
-            </p>
-
-            <ul>
-              <li>
-                Actualizar tu nombre, dirección de correo electrónico u otra
-                información personal.
-              </li>
-              <li>Cambiar tu foto de perfil.</li>
-              <li>Configurar las preferencias de privacidad de tu cuenta.</li>
-              <li>Modificar tu contraseña.</li>
-            </ul>
-
-            <h3>Soporte y ayuda</h3>
-            <p>
-              Si necesitas asistencia o tienes alguna pregunta, estamos aquí
-              para ayudarte. Puedes utilizar las siguientes opciones de soporte
-              y ayuda:
-            </p>
-
-            <ul>
-              <li>
-                Envíanos un correo electrónico a support@tusitio.com para
-                recibir asistencia técnica.
-              </li>
-              <li>Llama a nuestro equipo de soporte al +123456789.</li>
-              <li>
-                Consulta nuestra sección de preguntas frecuentes para encontrar
-                respuestas a las dudas más comunes.
-              </li>
-              <li>
-                Explora nuestros recursos y tutoriales en línea para obtener más
-                información sobre el funcionamiento del sistema.
-              </li>
-            </ul>
-
-            <p>
-              Estamos comprometidos a brindarte el mejor servicio posible y a
-              garantizar que tengas una experiencia óptima con nuestro sistema
-              de clasificación del llanto de bebés. No dudes en contactarnos si
-              necesitas ayuda o tienes alguna sugerencia para mejorar nuestro
-              servicio.
-            </p>
-          </div>
-        </div>
-      )}
+      {showAjustes && <Ajustes />}
       {showConocenos && (
         <div className="content-bars-background">
           <div className="conocenos">
@@ -144,18 +92,22 @@ function Bars({ device, item, setMenuVisible }) {
 
             <ul>
               <li>
-                <h4>Nombre Estudiante 1</h4>
-                <p>Breve descripción y logros del estudiante 1.</p>
+                <h4>Torres Reyes Karla Elizabeth</h4>
+                <p>
+                  Estudiante del Instituto Politécnico Nacional encargada de
+                  programar el modelo para el reconocimiento y clasifacion de
+                  los llantos de bebes mediante una red neuronal
+                </p>
               </li>
 
               <li>
-                <h4>Nombre Estudiante 2</h4>
-                <p>Breve descripción y logros del estudiante 2.</p>
+                <h4>Trejo Vera Fernanda</h4>
+                <p>Estudiante del Instituto Politécnico Nacional encargada de realizar el diseno frontend de la aplicacion web</p>
               </li>
 
               <li>
-                <h4>Nombre Estudiante 3</h4>
-                <p>Breve descripción y logros del estudiante 3.</p>
+                <h4>Mireles Martinez Angel Mauricio</h4>
+                <p>Estudiante del Instituto Politécnico Nacional encargado de realizar el trabajo correspondiente al Backend para las solicitudes a la base de datos</p>
               </li>
             </ul>
 
@@ -239,8 +191,8 @@ function Bars({ device, item, setMenuVisible }) {
                 <h3>Privacidad y datos personales:</h3>
                 <p>
                   a. Para utilizar la aplicación, es posible que se te solicite
-                  proporcionar cierta información personal, como la edad del
-                  bebé o grabaciones de su llanto.
+                  proporcionar cierta información personal, como tus datos como
+                  Nombre, Apellidos y grabaciones del llanto del bebé.
                 </p>
                 <p>
                   b. Nos comprometemos a proteger tu privacidad y a utilizar tus
@@ -249,7 +201,17 @@ function Bars({ device, item, setMenuVisible }) {
                   tu consentimiento.
                 </p>
               </li>
-
+              <li>
+                <h3>Privacidad y confidencialidad</h3>
+                <p>
+                  El desarrollador e institucion se compromete a utilizar los
+                  llantos de bebés de manera confidencial y a no divulgar,
+                  compartir ni publicar los datos de identificación personal o
+                  cualquier información que pueda identificar a los bebés o sus
+                  familias. Además, el usuario se compromete a cumplir con todas
+                  las leyes y regulaciones de privacidad aplicables.
+                </p>
+              </li>
               <li>
                 <h3>Responsabilidad:</h3>
                 <p>

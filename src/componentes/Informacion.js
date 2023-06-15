@@ -11,7 +11,7 @@ const Informacion = () => {
     if (username) {
       // Obtener la información personal del usuario de la base de datos
       axios
-        .post("http://20.38.171.121:5000/informacion-personal", { username })
+        .post("https://sonatus-app.azurewebsites.net/informacion-personal", { username })
         .then((response) => {
           setInformacionPersonal(response.data);
         });

@@ -1,0 +1,94 @@
+.content-colors-main{
+    width: 50vw;
+    top:6vh;
+    left: 50vw;
+    position: absolute;
+    background-color: antiquewhite;
+}
+.colors-items{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    border-left: 1px solid brown;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.colors-items:nth-child(4){
+    border-bottom: 1px solid brown;
+}
+
+.colors-object{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    border:2px solid black;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+.colors-items:nth-child(1) > .colors-object{
+    background-color: crimson ;
+}
+.colors-items:nth-child(2) > .colors-object{
+    background-color: rgb(159, 27, 236) ;
+}
+.colors-items:nth-child(3) > .colors-object{
+    background-color: greenyellow;
+}
+.colors-items:nth-child(4) > .colors-object{
+    background-color: aqua;
+}
+
+.header-purple{
+    background-color: rgb(159, 27, 236) !important;
+}
+.header-green{
+    background-color:greenyellow !important;
+}
+.header-blue{
+    background-color:rgb(0, 195, 255) !important;
+}
+.text-sonatus-purple{
+    text-shadow: 0 8px 9px #a21dd6, 0px -2px 1px rgb(157, 20, 220) !important;
+    background: linear-gradient(to bottom, rgb(159, 27, 236) 0%,rgb(158, 17, 201) 100%) !important;
+    color: rgb(140, 10, 179) !important;
+}
+.text-sonatus-blue{
+    text-shadow: 0 8px 9px #1dd6c7, 0px -2px 1px rgb(20, 147, 220) !important;
+    background: linear-gradient(to bottom, rgb(3, 189, 245) 0%,rgb(1, 187, 243) 100%) !important;
+    color: rgb(10, 179, 165) !important;
+}
+.text-sonatus-green{
+    text-shadow: 0 8px 9px #8fd61d, 0px -2px 1px rgb(167, 220, 20) !important;
+    background: linear-gradient(to bottom, rgb(185, 252, 28) 0%,rgb(144, 238, 21) 100%) !important;
+    color: rgb(148, 179, 10) !important;
+}
+.baby-background-gradient-purple{
+    background-image: linear-gradient(#d89afc,#d988ff) !important;
+}
+.baby-background-gradient-green{
+    background-image: linear-gradient(#dafc9a,#dfff88) !important;
+}
+.baby-background-gradient-blue{
+    background-image: linear-gradient(#9afce3,#88ffeb) !important;
+}
+.mic-purple{
+    color: rgb(187, 20, 220) !important;
+}
+.mic-green{
+    color: rgb(160, 220, 20) !important;
+}
+.mic-blue{
+    color: rgb(20, 197, 220) !important;
+}
+.btnMic-purple{
+    box-shadow: 0 0 0 2vw rgb(180, 20, 220), 0 0 0 3vw rgba(180, 20, 220, 0.541) !important;
+}
+.btnMic-green{
+    box-shadow: 0 0 0 2vw rgb(133, 220, 20), 0 0 0 3vw rgba(150, 220, 20, 0.541) !important;
+}
+.btnMic-blue{
+    box-shadow: 0 0 0 2vw rgb(20, 197, 220), 0 0 0 3vw rgba(20, 207, 220, 0.541) !important;
+}

@@ -21,7 +21,7 @@ const Login = ({ setIsLoggedIn }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://20.38.171.121:5000/login", {
+      const response = await axios.post("https://sonatus-app.azurewebsites.net/login", {
         username,
         password,
       });
@@ -61,7 +61,7 @@ const Login = ({ setIsLoggedIn }) => {
   const sendPasswordResetRequest = async () => {
     try {
       // Hacer la solicitud al servidor con el correo electrónico
-      const response = await axios.post("http://20.38.171.121:5000/password", {
+      const response = await axios.post("https://sonatus-app.azurewebsites.net/password", {
         email,
       });
 
@@ -72,6 +72,7 @@ const Login = ({ setIsLoggedIn }) => {
       // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario.
     }
     setShowForgotPassword(false);
+    setEmail("");
   };
 
   const handleUsernameChange = (event) => {

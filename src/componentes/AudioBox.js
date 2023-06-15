@@ -21,7 +21,7 @@ function AudioBox({ grabaciones, onBorrar }) {
       formData.append("audio", grabacion);
       formData.append("username", user);
       const response = await axios.post(
-        "http://20.38.171.121:5000/upload",
+        "https://sonatus-app.azurewebsites.net/upload",
         formData,
         {
           headers: {

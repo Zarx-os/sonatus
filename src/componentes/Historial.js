@@ -34,7 +34,7 @@ const Historial = () => {
 
     if (username) {
       axios
-        .post("http://20.38.171.121:5000/audios", { username })
+        .post("https://sonatus-app.azurewebsites.net/audios", { username })
         .then((response) => {
           const sortedHistorial = response.data.sort((a, b) => {
             const dateA = new Date(a.fecha);

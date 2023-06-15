@@ -172,3 +172,70 @@ h1{
         padding: 40px 40px; 
     }
 }
+
+.change-password{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 40px 40px;
+    box-shadow: 0 0 10px 2px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.change-password > input[type=password]{
+    width: 80%;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 15px;
+}
+.change-password > button {
+    margin-top: 5px;
+    height: 30px;
+    width: 70%;
+    background-color: aquamarine;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.terminosYcondiciones ol{
+    margin-top: 20px;
+}
+.terminosYcondiciones li{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.terminosYcondiciones p{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.conocenos h2{
+    margin-bottom: 20px;
+}
+.conocenos ul{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.conocenos p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.ajustes ul{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.ajustes p{
+    margin-top: 5px;
+}

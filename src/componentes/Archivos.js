@@ -10,7 +10,7 @@
         // Obtener los archivos del usuario de la base de datos
         if (username) {
         axios
-            .post("http://20.38.171.121:5000/get_audios", { username })
+            .post("https://sonatus-app.azurewebsites.net/get_audios", { username })
             .then((response) => {
             setArchivos(response.data);
             });
@@ -22,7 +22,7 @@
     const descargarArchivo = (archivoId, titulo) => {
         // Realizar la petición para descargar el archivo con el archivoId
         axios({
-        url: "http://20.38.171.121:5000/download_audio",
+        url: "https://sonatus-app.azurewebsites.net/download_audio",
         method: "POST",
         data: {
             archivoId: archivoId,

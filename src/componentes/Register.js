@@ -24,17 +24,21 @@ const Register = () => {
     //event.preventDefault();
     if (validateForm()) {
       sendData(); // Aqui se envia al servidor en formato json para subirlo a la base de datos
-    }else{
-      window.alert("Algun campo no se relleno de manera deacuada");
+      
     }
   };
 
   const sendData = async () => {
     try {
-      const response = await axios.post('http://20.38.171.121:5000/register', formValues);
+      const response = await axios.post('https://sonatus-app.azurewebsites.net/register', formValues);
   
       if (response.status === 200) {
-      //console.log(response.data);
+        stepNext()
+      }else if(response.status === 500){
+        window.alert("Ocurrio un error relacionado con el correo repetido")
+      }
+      else{
+        console.log(response.data);
       }
       /*if (response.status === 200) {
         setStep(numSteps);
@@ -47,16 +51,21 @@ const Register = () => {
   const validateForm = () => {
     const requiredFields = ["name", "email", "apellido_P","apellido_M", "pass", "repass"];
     let isValid = true;
-    console.log(formValues)
+    //console.log(formValues)
+    let valors = []
     for (const field of requiredFields) {
       if (formValues[field].trim() === "") {
         isValid = false;
-        Window.alert("Esta vacio uno de los campos, llene todos.");
+        valors.push(field)
       }
     }
+    if(valors.length > 0) {
+      window.alert(`Estos campos no estan llenados ${valors}`);
+    }
+
     if (formValues["pass"] !== formValues["repass"]) {
       isValid = false;
-      Window.alert("La contrasena no coincide");
+      window.alert("Las contraseña no coinciden");
     }
     return isValid;
   };
@@ -66,10 +75,9 @@ const Register = () => {
       setStep(0);
       setProgress(0);
       setShowStep(false);
-      window.location.href = "/";
+      window.location.href = "/sonatus/";
     } else if (step === numSteps - 2) {
       handleSubmit();
-      stepNext();
     } else {
       stepNext();
     }
@@ -102,11 +110,12 @@ const Register = () => {
             {step === 0 && (
               <section className={`subitem-in paso1 ${showStep ? "step" : ""}`}>
                 <section>
-                  <h1> Welcome</h1>
+                  <h1>Bienvenido</h1>
                 </section>
                 <section>
-                  <p>Bienvenido para la creacion de su cuenta nueva en SONATUS</p>
-                  <p>Esto sera un registro paso a paso</p>
+                  <p>Daremos un paso a la vez para la creacion de su cuenta nueva en SONATUS</p>
+                  <p>Este registro solo necesitamos su nombre y correo electronico para poder adquirir 
+                    un usuario con el que podra acceder con la contraseña que registre en el formulario</p>
                 </section>
               </section>
             )}
