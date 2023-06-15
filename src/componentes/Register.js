@@ -30,7 +30,7 @@ const Register = () => {
 
   const sendData = async () => {
     try {
-      const response = await axios.post('https://sonatus-app.azurewebsites.net/register', formValues);
+      const response = await axios.post('https://flask-production-9b80.up.railway.app/register', formValues);
   
       if (response.status === 200) {
         stepNext()
